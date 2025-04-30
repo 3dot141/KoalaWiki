@@ -1,5 +1,3 @@
-version: '3.3'
-
 services:
   koalawiki:
     image: crpi-j9ha7sxwhatgtvj4.cn-shenzhen.personal.cr.aliyuncs.com/koala-ai/koala-wiki
