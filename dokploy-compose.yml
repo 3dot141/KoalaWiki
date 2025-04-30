@@ -20,6 +20,11 @@ services:
     build:
       context: web/.
       dockerfile: Dockerfile
+      args:
+        - http_proxy=http://172.17.0.1:7890
+        - https_proxy=http://172.17.0.1:7890
+        - HTTP_PROXY=http://172.17.0.1:7890
+        - HTTPS_PROXY=http://172.17.0.1:7890
     pull_policy: always
     networks:
       - dokploy-network
