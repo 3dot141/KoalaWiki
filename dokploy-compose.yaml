@@ -1,0 +1,33 @@
+version: '3.3'
+
+services:
+  koalawiki:
+    image: crpi-j9ha7sxwhatgtvj4.cn-shenzhen.personal.cr.aliyuncs.com/koala-ai/koala-wiki
+    environment: 
+      - ASPNETCORE_ENVIRONMENT=Development
+    volumes:
+      - ./repositories:/repositories
+      - ./data:/data
+    networks:
+      - dokploy-network
+    pull_policy: always
+      
+  koalawiki-web:
+    image: crpi-j9ha7sxwhatgtvj4.cn-shenzhen.personal.cr.aliyuncs.com/koala-ai/koala-wiki-web
+    environment:
+      - NEXT_PUBLIC_API_URL=http://koalawiki:8080
+      - API_URL=http://koalawiki:8080
+    build:
+      context: web/.
+      dockerfile: Dockerfile
+    pull_policy: always
+    networks:
+      - dokploy-network
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.koalawiki.rule=Host(`one-wiki-nhsyxy-c75629.traefik.me`)"
+      - "traefik.http.services.koalawiki.loadbalancer.server.port=3000"
+
+networks:
+  dokploy-network:
+    external: true
