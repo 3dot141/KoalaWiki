@@ -6,6 +6,14 @@ services:
     volumes:
       - ./repositories:/repositories
       - ./data:/data
+    build:
+      context: .
+      dockerfile: src/KoalaWiki/Dockerfile
+      args:
+        - http_proxy=http://172.17.0.1:7890
+        - https_proxy=http://172.17.0.1:7890
+        - HTTP_PROXY=http://172.17.0.1:7890
+        - HTTPS_PROXY=http://172.17.0.1:7890
     networks:
       - dokploy-network
     pull_policy: always
