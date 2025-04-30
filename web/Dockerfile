@@ -34,10 +34,6 @@ RUN \
   else echo "Lockfile not found." && exit 1; \
   fi
 
-RUN \
-  cd app \ 
-  ls -a
-
 # Production image, copy all the files and run next
 FROM base AS runner
 WORKDIR /app
@@ -49,7 +45,7 @@ ENV NODE_ENV=production
 RUN addgroup --system --gid 1001 nodejs
 RUN adduser --system --uid 1001 nextjs
 
-COPY --from=builder /app/public ./public
+COPY --from=builder /app/app/public ./public
 
 # Automatically leverage output traces to reduce image size
 # https://nextjs.org/docs/advanced-features/output-file-tracing
