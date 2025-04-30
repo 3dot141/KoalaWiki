@@ -23,6 +23,8 @@ services:
         - https_proxy=http://172.17.0.1:7890
         - HTTP_PROXY=http://172.17.0.1:7890
         - HTTPS_PROXY=http://172.17.0.1:7890
+        - NEXT_PUBLIC_API_URL=http://koalawiki:8080
+        - API_URL=http://koalawiki:8080
     pull_policy: always
     networks:
       - dokploy-network
