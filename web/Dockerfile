@@ -34,8 +34,9 @@ RUN \
   else echo "Lockfile not found." && exit 1; \
   fi
 
-RUN cd app
-RUN ls -a
+RUN \
+  cd app \ 
+  ls -a
 
 # Production image, copy all the files and run next
 FROM base AS runner
